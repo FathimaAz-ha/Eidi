@@ -351,6 +351,67 @@ footer p {
   animation: riseIn 900ms 180ms ease forwards;
 }
 
+.message-page {
+  place-items: center;
+}
+
+.message-card {
+  width: min(700px, 100%);
+  background: rgba(252, 246, 227, 0.94);
+  border: 1px solid var(--card-border);
+  border-radius: 28px;
+  padding: 2rem;
+  box-shadow: 0 18px 45px rgba(6, 30, 27, 0.45);
+  position: relative;
+}
+
+.message-recipient {
+  margin: 0.2rem 0 0;
+  color: #6f5f32;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.wish-panel {
+  margin-top: 1.2rem;
+  background: linear-gradient(135deg, rgba(255, 252, 240, 0.95), rgba(250, 236, 198, 0.92));
+  border: 1px solid rgba(175, 122, 36, 0.34);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+}
+
+.wish-line {
+  margin: 0;
+  font-family: "Fraunces", serif;
+  font-size: clamp(1.15rem, 2.1vw, 1.4rem);
+  color: #2d3f3a;
+  line-height: 1.55;
+}
+
+.wish-sender {
+  margin: 0.6rem 0 0;
+  color: #5a635e;
+  font-weight: 700;
+}
+
+.love-btn {
+  margin-top: 1.3rem;
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.82rem 1.22rem;
+  font-weight: 700;
+  color: var(--button-text);
+  text-decoration: none;
+  background: linear-gradient(120deg, #7f4d16, #a66d1f);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.love-btn:hover,
+.love-btn:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 16px rgba(127, 77, 22, 0.35);
+}
+
 @keyframes riseIn {
   to {
     opacity: 1;
@@ -390,5 +451,10 @@ footer p {
 
   .action-row {
     grid-template-columns: 1fr;
+  }
+
+  .message-card {
+    padding: 1.4rem 1.1rem;
+    border-radius: 22px;
   }
 }

@@ -10,6 +10,7 @@ const dynamicWish = document.getElementById("dynamicWish");
 const wishForm = document.getElementById("wishForm");
 const sendStatus = document.getElementById("sendStatus");
 const copyLinkBtn = document.getElementById("copyLinkBtn");
+
 function buildCleanUrl() {
   const cleanUrl = new URL(window.location.href);
   cleanUrl.search = "";
@@ -17,9 +18,23 @@ function buildCleanUrl() {
   return cleanUrl.toString();
 }
 
-function buildWhatsappSendLink() {
-  const cleanUrl = buildCleanUrl();
-  return `https://wa.me/?text=${encodeURIComponent(cleanUrl)}`;
+function encodePayload(data) {
+  const utf8 = encodeURIComponent(JSON.stringify(data));
+  const base64 = btoa(utf8);
+  return base64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+}
+
+function buildMessageCardLink(recipientName, senderName, wishMessage) {
+  const payload = {
+    r: recipientName,
+    s: senderName,
+    w: wishMessage
+  };
+
+  const token = encodePayload(payload);
+  const messagePageUrl = new URL("message.html", buildCleanUrl());
+  messagePageUrl.hash = `d=${token}`;
+  return messagePageUrl.toString();
 }
 
 async function copyText(text) {
@@ -68,14 +83,14 @@ wishForm.addEventListener("submit", (event) => {
     return;
   }
 
-  const cleanUrl = buildCleanUrl();
+  const messageCardLink = buildMessageCardLink(recipientName, senderName, wishMessage);
 
   const messageLines = [
     recipientName ? `Dear ${recipientName},` : "Assalamu Alaikum,",
     "",
     wishMessage,
     "",
-    `View your Eid wish card: ${cleanUrl}`,
+    `View your Eid wish card: ${messageCardLink}`,
     "",
     `Warm regards,`,
     senderName
@@ -89,11 +104,20 @@ wishForm.addEventListener("submit", (event) => {
 });
 
 copyLinkBtn.addEventListener("click", async () => {
-  const whatsappSendLink = buildWhatsappSendLink();
+  const recipientName = document.getElementById("recipientName").value.trim();
+  const senderName = document.getElementById("senderName").value.trim();
+  const wishMessage = document.getElementById("wishMessage").value.trim();
+
+  if (!senderName || !wishMessage) {
+    sendStatus.textContent = "Please enter your name and wish message before copying the link.";
+    return;
+  }
+
+  const messageCardLink = buildMessageCardLink(recipientName, senderName, wishMessage);
 
   try {
-    await copyText(whatsappSendLink);
-    sendStatus.textContent = "WhatsApp send link copied without message text in the URL.";
+    await copyText(messageCardLink);
+    sendStatus.textContent = "Sending link copied.";
   } catch {
     sendStatus.textContent = "Unable to copy automatically. Please copy the link from the browser address bar.";
   }
