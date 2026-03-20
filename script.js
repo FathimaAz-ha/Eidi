@@ -88,7 +88,7 @@ wishForm.addEventListener("submit", (event) => {
   const messageLines = [
     recipientName ? `Dear ${recipientName},` : "Assalamu Alaikum,",
     "",
-    wishMessage,
+    "Helllow!",
     "",
     `View your Eid wish card: ${messageCardLink}`,
     "",
