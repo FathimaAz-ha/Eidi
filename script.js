@@ -17,6 +17,11 @@ function buildCleanUrl() {
   return cleanUrl.toString();
 }
 
+function buildWhatsappSendLink() {
+  const cleanUrl = buildCleanUrl();
+  return `https://wa.me/?text=${encodeURIComponent(cleanUrl)}`;
+}
+
 async function copyText(text) {
   if (navigator.clipboard && window.isSecureContext) {
     await navigator.clipboard.writeText(text);
@@ -84,11 +89,11 @@ wishForm.addEventListener("submit", (event) => {
 });
 
 copyLinkBtn.addEventListener("click", async () => {
-  const cleanUrl = buildCleanUrl();
+  const whatsappSendLink = buildWhatsappSendLink();
 
   try {
-    await copyText(cleanUrl);
-    sendStatus.textContent = "Page link copied.";
+    await copyText(whatsappSendLink);
+    sendStatus.textContent = "WhatsApp send link copied without message text in the URL.";
   } catch {
     sendStatus.textContent = "Unable to copy automatically. Please copy the link from the browser address bar.";
   }
