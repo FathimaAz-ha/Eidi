@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eidi</title>
+  <meta name="description" content="A warm and elegant Eid wishes page." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="sky-glow" aria-hidden="true"></div>
+  <div class="stars" aria-hidden="true"></div>
+
+  <main class="card reveal">
+    <p class="eyebrow">Eid Mubarak</p>
+    <h1>Wishing You Joy, Peace, and Barakah</h1>
+    <p class="message">
+      May this Eid bring light to your home, kindness to your heart,
+      and blessings to every step you take.
+    </p>
+
+    <section class="dua-box" aria-label="Eid dua">
+      <p class="dua-label">Eid Dua</p>
+      <p class="dua-text">Taqabbal Allahu minna wa minkum.</p>
+      <p class="translation">May Allah accept from us and from you.</p>
+    </section>
+
+    <button id="wishBtn" class="wish-btn" type="button">Generate Wish Line</button>
+    <p id="dynamicWish" class="dynamic-wish" aria-live="polite"></p>
+
+    <section class="sender-panel" aria-labelledby="senderTitle">
+      <h2 id="senderTitle">Share Your Eid Wish</h2>
+      <p class="sender-note">Write your message and tap the button to share this Eid wish card on WhatsApp.</p>
+
+      <form id="wishForm" class="wish-form" novalidate>
+        <label for="recipientName">Recipient Name (optional)</label>
+        <input id="recipientName" name="recipientName" type="text"  maxlength="60" />
+
+        <label for="senderName">Your Name</label>
+        <input id="senderName" name="senderName" type="text"   maxlength="60" required />
+
+        <label for="wishMessage">Wish Message</label>
+        <textarea id="wishMessage" name="wishMessage" rows="4" required></textarea>
+
+        <div class="action-row">
+          <button class="send-btn" type="submit">Share On WhatsApp</button>
+          <button id="copyLinkBtn" class="copy-btn" type="button">Copy Link</button>
+        </div>
+      </form>
+
+      <p id="sendStatus" class="send-status" aria-live="polite"></p>
+    </section>
+
+    <footer>
+      <p>Created by Fathima Azha</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
