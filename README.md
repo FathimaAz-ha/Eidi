@@ -31,7 +31,7 @@ Open `index.html` in your browser.
 
 Your site will be available at:
 
-`https://<your-username>.github.io/<repository-name>/`
+`https://fathimaaz-ha.github.io/Eidi/`
 
 ## Created By
 
